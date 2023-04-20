@@ -1,0 +1,31 @@
+{
+    "type": "object",
+    "properties": {
+        "barcode": {
+            "type": ["null", "string"]
+        },
+        "barcodes": {
+            "type": ["null", "string"]
+        },
+        "buybox_price": {
+            "type": ["null", "string"]
+        },
+        "category_id": {
+            "type": ["integer"]
+        },
+        "color_image": {
+            "type": ["string"]
+        },
+        "created_at": {
+            "anyOf": [
+                {
+                    "type": "string",
+                    "format": "date-time"
+                },
+                {
+                    "type": "null"
+                }
+            ]
+        }
+    }
+}
