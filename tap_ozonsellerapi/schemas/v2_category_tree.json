@@ -1,0 +1,20 @@
+{
+    "$ref": "#/definitions/GetCategoriesTree_Category",
+    "title": "GetCategoriesTree_Category",
+    "type": "object",
+    "properties": {
+        "category_id": {
+            "type": ["integer"]
+        },
+        "title": {
+            "type": ["null", "string"]
+        },
+        "children": {
+            "type": "array",
+            "items": {
+                "$ref": "#/definitions/GetCategoriesTree_Category"
+            }
+        }
+    },
+    "required": ["category_id", "title"]
+}

@@ -1,0 +1,76 @@
+{
+  "streams": [
+    {
+      "tap_stream_id": "v2_category_tree",
+      "replication_method": "FULL_TABLE",
+      "key_properties": [
+        "category_id"
+      ],
+      "schema": {
+        "properties": {
+          "category_id": {
+            "description": "The user's system ID",
+            "type": [
+              "integer",
+              "null"
+            ]
+          },
+          "title": {
+            "description": "The user's age in years",
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "children": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        },
+        "type": "object"
+      },
+      "stream": "v2_category_tree",
+      "metadata": [
+        {
+          "breadcrumb": [
+            "properties",
+            "category_id"
+          ],
+          "metadata": {
+            "inclusion": "automatic"
+          }
+        },
+        {
+          "breadcrumb": [
+            "properties",
+            "title"
+          ],
+          "metadata": {
+            "inclusion": "available"
+          }
+        },
+        {
+          "breadcrumb": [
+            "properties",
+            "children"
+          ],
+          "metadata": {
+            "inclusion": "available"
+          }
+        },
+        {
+          "breadcrumb": [],
+          "metadata": {
+            "inclusion": "available",
+            "selected": true,
+            "table-key-properties": [
+              "category_id"
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

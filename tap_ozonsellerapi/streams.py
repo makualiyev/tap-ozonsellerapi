@@ -7,6 +7,7 @@ from pathlib import Path
 
 import requests
 from singer_sdk import typing as th  # JSON Schema typing helpers
+from singer_sdk.pagination import BaseAPIPaginator
 
 from tap_ozonsellerapi.client import OzonSellerAPIStream
 
@@ -26,23 +27,25 @@ class v2CategoryTreeStream(OzonSellerAPIStream):
 
     replication_key = None
     # Optionally, you may also use `schema_filepath` in place of `schema`:
-    # schema_filepath = SCHEMAS_DIR / "users.json"
-    schema = th.PropertiesList(
-        th.Property(
-            "category_id",
-            th.IntegerType,
-            description="The user's system ID",
-        ),
-        th.Property(
-            "title",
-            th.StringType,
-            description="The user's age in years",
-        ),
-        th.Property(
-            "children",
-            th.StringType
-        ),
-    ).to_dict()
+    schema_filepath = SCHEMAS_DIR / "v2_category_tree.json"
+    # schema = th.PropertiesList(
+    #     th.Property(
+    #         "category_id",
+    #         th.IntegerType,
+    #         description="The user's system ID",
+    #     ),
+    #     th.Property(
+    #         "title",
+    #         th.StringType,
+    #         description="The user's age in years",
+    #     ),
+    #     th.Property(
+    #         "children",
+    #         th.ArrayType(
+    #         th.JSONPointerType()
+    #         )
+    #     ),
+    # ).to_dict()
 
     def build_prepared_request(
             self, *args: Any, **kwargs: Any
@@ -57,11 +60,11 @@ class v2CategoryTreeStream(OzonSellerAPIStream):
             next_page_token
     ) -> dict | None:
         return {
-            # 'category_id': 17027492
+            # 'category_id': 17031399
         }
     
 
-class v2ProductListStream(OzonSellerStream):
+class v2ProductListStream(OzonSellerAPIStream):
     """Define custom stream."""
 
     name = "v2_product_list"
@@ -111,7 +114,7 @@ class v2ProductListStream(OzonSellerStream):
         }
     
 
-class v2ProductInfoStream(OzonSellerStream):
+class v2ProductInfoStream(OzonSellerAPIStream):
     """Define custom stream."""
 
     def __init__(self, *args, key_: str) -> None:

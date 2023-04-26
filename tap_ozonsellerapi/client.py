@@ -17,7 +17,7 @@ SCHEMAS_DIR = Path(__file__).parent / Path("./schemas")
 class OzonSellerAPIStream(RESTStream):
     """OzonSellerAPI stream class."""
 
-    url_base = "https://api.mysample.com"
+    url_base = "https://api-seller.ozon.ru"
 
     # OR use a dynamic url_base:
     # @property

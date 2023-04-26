@@ -1,0 +1,50 @@
+{
+    "type": "SCHEMA",
+    "stream": "v2_category_tree",
+    "schema": {
+        "properties": {
+            "category_id": {
+                "description": "The user's system ID",
+                "type": [
+                    "integer",
+                    "null"
+                ]
+            },
+            "title": {
+                "description": "The user's age in years",
+                "type": [
+                    "string",
+                    "null"
+                ]
+            },
+            "children": {
+                "type": [
+                    "string",
+                    "null"
+                ]
+            }
+        },
+        "type": "object"
+    },
+    "key_properties": [
+        "category_id"
+    ]
+}
+{
+    "type": "RECORD",
+    "stream": "v2_category_tree",
+    "record": {
+        "category_id": 17031399,
+        "title": "HEPA \u0444\u0438\u043b\u044c\u0442\u0440",
+        "children": []
+    },
+    "time_extracted": "2023-04-20T20:08:08.766195+00:00"
+}
+{
+    "type": "STATE",
+    "value": {
+        "bookmarks": {
+            "v2_category_tree": {}
+        }
+    }
+}
