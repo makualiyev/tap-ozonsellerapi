@@ -18,13 +18,12 @@ plugins:
     config:
       start_date: '2023-04-20T00:00:00Z'
       client_id: '397677'
-      api_key: 118227b0-bd8d-4323-bee1-2e90d05c7f26
     # settings:
     # TODO: To configure using Meltano, declare settings and their types here:
     # - name: client_id
-    #   value: '397677'
+
     # - name: api_key
-    #   value: '118227b0-bd8d-4323-bee1-2e90d05c7f26'
+
     # - name: start_date
     #   value: '2023-04-20T00:00:00Z'
   loaders:
