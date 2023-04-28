@@ -107,12 +107,12 @@ class v2ProductInfoStream(OzonSellerAPIStream):
     
     name = "v2_product_info"
     path = "/v2/product/info"
-    primary_keys = ["product_id"]
+    primary_keys = ["id"]
     records_jsonpath = "$.result"
 
     replication_key = None
     # Optionally, you may also use `schema_filepath` in place of `schema`:
-    schema_filepath = SCHEMAS_DIR / "v2_product_info_2.json"
+    schema_filepath = SCHEMAS_DIR / "v2_product_info_3.json"
     # schema = th.PropertiesList(
     #     th.Property(
     #         "product_id",
