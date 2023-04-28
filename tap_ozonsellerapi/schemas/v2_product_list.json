@@ -1,0 +1,13 @@
+{
+    "title": "v2_product_list",
+    "type": "object",
+    "properties": {
+        "product_id": {
+            "type": ["integer"]
+        },
+        "offer_id": {
+            "type": ["string"]
+        }
+    },
+    "required": ["product_id", "offer_id"]
+}

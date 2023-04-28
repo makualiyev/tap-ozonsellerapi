@@ -1,31 +1,212 @@
 {
-    "type": "object",
-    "properties": {
-        "barcode": {
-            "type": ["null", "string"]
-        },
-        "barcodes": {
-            "type": ["null", "string"]
-        },
-        "buybox_price": {
-            "type": ["null", "string"]
-        },
-        "category_id": {
-            "type": ["integer"]
-        },
-        "color_image": {
-            "type": ["string"]
-        },
-        "created_at": {
-            "anyOf": [
-                {
-                    "type": "string",
-                    "format": "date-time"
-                },
-                {
-                    "type": "null"
-                }
-            ]
+  "title": "PostProductInfo",
+  "type": "object",
+  "properties": {
+    "barcode": { "title": "Barcode", "type": "string" },
+    "buybox_price": { "title": "Buybox Price", "type": "string" },
+    "category_id": { "title": "Category Id", "type": "integer" },
+    "color_image": { "title": "Color Image", "type": "string" },
+    "commissions": {
+      "title": "Commissions",
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/productv2GetProductInfoResponseCommissions"
+      }
+    },
+    "created_at": {
+      "title": "Created At",
+      "type": "string",
+      "format": "date-time"
+    },
+    "id": { "title": "Id", "type": "integer" },
+    "images": {
+      "title": "Images",
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "primary_image": { "title": "Primary Image", "type": "string" },
+    "images360": {
+      "title": "Images360",
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "is_kgt": { "title": "Is Kgt", "type": "boolean" },
+    "is_prepayment": { "title": "Is Prepayment", "type": "boolean" },
+    "is_prepayment_allowed": {
+      "title": "Is Prepayment Allowed",
+      "type": "boolean"
+    },
+    "marketing_price": { "title": "Marketing Price", "type": "string" },
+    "min_ozon_price": { "title": "Min Ozon Price", "type": "string" },
+    "min_price": { "title": "Min Price", "type": "string" },
+    "name": { "title": "Name", "type": "string" },
+    "offer_id": { "title": "Offer Id", "type": "string" },
+    "old_price": { "title": "Old Price", "type": "string" },
+    "premium_price": { "title": "Premium Price", "type": "string" },
+    "price": { "title": "Price", "type": "string" },
+    "price_index": { "title": "Price Index", "type": "string" },
+    "recommended_price": { "title": "Recommended Price", "type": "string" },
+    "status": { "$ref": "#/definitions/productv2Status" },
+    "sources": {
+      "title": "Sources",
+      "type": "array",
+      "items": { "$ref": "#/definitions/productv2GetProductInfoResponseSource" }
+    },
+    "stocks": { "$ref": "#/definitions/productv2GetProductInfoResponseStock" },
+    "vat": { "title": "Vat", "type": "string" },
+    "visibility_details": {
+      "$ref": "#/definitions/productv2GetProductInfoResponseVisibilityDetails"
+    },
+    "visible": { "title": "Visible", "type": "boolean" },
+    "volume_weight": { "title": "Volume Weight", "type": "number" }
+  },
+  "required": [
+    "barcode",
+    "buybox_price",
+    "category_id",
+    "color_image",
+    "created_at",
+    "id",
+    "images",
+    "primary_image",
+    "images360",
+    "is_kgt",
+    "marketing_price",
+    "min_ozon_price",
+    "min_price",
+    "name",
+    "offer_id",
+    "old_price",
+    "premium_price",
+    "price",
+    "price_index",
+    "recommended_price",
+    "status",
+    "sources",
+    "stocks",
+    "vat",
+    "visibility_details",
+    "visible"
+  ],
+  "definitions": {
+    "productv2GetProductInfoResponseCommissions": {
+      "title": "productv2GetProductInfoResponseCommissions",
+      "type": "object",
+      "properties": {
+        "delivery_amount": { "title": "Delivery Amount", "type": "number" },
+        "min_value": { "title": "Min Value", "type": "number" },
+        "percent": { "title": "Percent", "type": "number" },
+        "return_amount": { "title": "Return Amount", "type": "number" },
+        "sale_schema": { "title": "Sale Schema", "type": "string" },
+        "value": { "title": "Value", "type": "number" }
+      },
+      "required": [
+        "delivery_amount",
+        "min_value",
+        "percent",
+        "return_amount",
+        "sale_schema",
+        "value"
+      ]
+    },
+    "v2ItemError": {
+      "title": "v2ItemError",
+      "type": "object",
+      "properties": {
+        "code": { "title": "Code", "type": "string" },
+        "state": { "title": "State", "type": "string" },
+        "level": { "title": "Level", "type": "string" },
+        "description": { "title": "Description", "type": "string" },
+        "field": { "title": "Field", "type": "string" },
+        "attribute_id": { "title": "Attribute Id", "type": "integer" },
+        "attribute_name": { "title": "Attribute Name", "type": "string" },
+        "optional_description_elements": {
+          "title": "Optional Description Elements"
         }
+      },
+      "required": [
+        "code",
+        "state",
+        "level",
+        "description",
+        "field",
+        "attribute_id",
+        "attribute_name"
+      ]
+    },
+    "productv2Status": {
+      "title": "productv2Status",
+      "type": "object",
+      "properties": {
+        "state": { "title": "State", "type": "string" },
+        "state_failed": { "title": "State Failed", "type": "string" },
+        "moderate_status": { "title": "Moderate Status", "type": "string" },
+        "decline_reasons": {
+          "title": "Decline Reasons",
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "validation_state": { "title": "Validation State", "type": "string" },
+        "state_name": { "title": "State Name", "type": "string" },
+        "state_description": { "title": "State Description", "type": "string" },
+        "is_failed": { "title": "Is Failed", "type": "boolean" },
+        "is_created": { "title": "Is Created", "type": "boolean" },
+        "state_tooltip": { "title": "State Tooltip", "type": "string" },
+        "item_errors": {
+          "title": "Item Errors",
+          "type": "array",
+          "items": { "$ref": "#/definitions/v2ItemError" }
+        },
+        "state_updated_at": {
+          "title": "State Updated At",
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "required": [
+        "state",
+        "state_failed",
+        "moderate_status",
+        "decline_reasons",
+        "validation_state",
+        "state_name",
+        "state_description",
+        "is_failed",
+        "is_created",
+        "state_tooltip",
+        "item_errors",
+        "state_updated_at"
+      ]
+    },
+    "productv2GetProductInfoResponseSource": {
+      "title": "productv2GetProductInfoResponseSource",
+      "type": "object",
+      "properties": {
+        "is_enabled": { "title": "Is Enabled", "type": "boolean" },
+        "sku": { "title": "Sku", "type": "integer" },
+        "source": { "title": "Source", "type": "string" }
+      },
+      "required": ["is_enabled", "sku", "source"]
+    },
+    "productv2GetProductInfoResponseStock": {
+      "title": "productv2GetProductInfoResponseStock",
+      "type": "object",
+      "properties": {
+        "coming": { "title": "Coming", "type": "integer" },
+        "present": { "title": "Present", "type": "integer" },
+        "reserved": { "title": "Reserved", "type": "integer" }
+      },
+      "required": ["coming", "present", "reserved"]
+    },
+    "productv2GetProductInfoResponseVisibilityDetails": {
+      "title": "productv2GetProductInfoResponseVisibilityDetails",
+      "type": "object",
+      "properties": {
+        "active_product": { "title": "Active Product", "type": "boolean" },
+        "has_price": { "title": "Has Price", "type": "boolean" },
+        "has_stock": { "title": "Has Stock", "type": "boolean" }
+      },
+      "required": ["active_product", "has_price", "has_stock"]
     }
+  }
 }

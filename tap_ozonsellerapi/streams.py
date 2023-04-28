@@ -74,24 +74,8 @@ class v2ProductListStream(OzonSellerAPIStream):
     next_page_token_jsonpath = "$.result.last_id"
     replication_key = None
     # Optionally, you may also use `schema_filepath` in place of `schema`:
-    # schema_filepath = SCHEMAS_DIR / "users.json"
-    schema = th.PropertiesList(
-        th.Property(
-            "product_id",
-            th.IntegerType,
-            description="Идентификатор товара",
-        ),
-        th.Property(
-            "offer_id",
-            th.StringType,
-            description="Идентификатор товара в системе продавца — артикул",
-        ),
-        # th.Property(                                                                      # TODO: is it needed for next page token arg?
-        #     "last_id",
-        #     th.StringType,
-        #     description="Идентификатор товара в системе продавца — артикул",
-        # ),
-    ).to_dict()
+    schema_filepath = SCHEMAS_DIR / "v2_product_list.json"
+    
 
     def build_prepared_request(
             self, *args: Any, **kwargs: Any
@@ -124,11 +108,11 @@ class v2ProductInfoStream(OzonSellerAPIStream):
     name = "v2_product_info"
     path = "/v2/product/info"
     primary_keys = ["product_id"]
-    records_jsonpath = "$.result[*]"
-    next_page_token_jsonpath = "$.result.last_id"
+    records_jsonpath = "$.result"
+
     replication_key = None
     # Optionally, you may also use `schema_filepath` in place of `schema`:
-    schema_filepath = SCHEMAS_DIR / "v2_product_info.json"
+    schema_filepath = SCHEMAS_DIR / "v2_product_info_2.json"
     # schema = th.PropertiesList(
     #     th.Property(
     #         "product_id",

@@ -1,0 +1,471 @@
+{
+                "title": "productv2GetProductInfoResponseResult",
+              "properties": {
+                "barcode": {
+                  "type": "string",
+                  "description": "Штрихкод."
+                },
+                
+                "buybox_price": {
+                  "type": "string",
+                  "description": "Цена главного предложения на Ozon. \n\nУстаревший параметр, больше не используется. Всегда возвращает пустую строку `\"\"`.\n"
+                },
+                "category_id": {
+                  "format": "int64",
+                  "type": "integer",
+                  "description": "Идентификатор категории."
+                },
+                "color_image": {
+                  "type": "string",
+                  "description": "Маркетинговый цвет."
+                },
+                "commissions": {
+                  "items": {
+                    "$ref": "#/definitions/productv2GetProductInfoResponseCommissions"
+                  },
+                  "type": "array",
+                  "description": "Информация о комиссиях."
+                },
+                "created_at": {
+                  "format": "date-time",
+                  "type": "string",
+                  "description": "Дата и время создания товара."
+                },
+                "fbo_sku": {
+                  "type": "integer",
+                  "format": "int64",
+                  "description": "SKU товара, который продаётся со склада Ozon (FBO)."
+                },
+                "fbs_sku": {
+                  "type": "integer",
+                  "format": "int64",
+                  "description": "SKU товара, который продаётся со склада продавца (FBS и rFBS)."
+                },
+                "id": {
+                  "format": "int64",
+                  "type": "integer",
+                  "description": "Номер задания на формирование документов."
+                },
+                "images": {
+                  "items": {
+                    "type": "string"
+                  },
+                  "type": "array",
+                  "description": "Массив ссылок на изображения. Изображения в массиве расположены в порядке их расположения на сайте. Если параметр `primary_image` не указан, первое изображение в массиве главное для товара."
+                },
+                "primary_image": {
+                  "type": "string",
+                  "description": "Главное изображение товара."
+                },
+                "images360": {
+                  "items": {
+                    "type": "string"
+                  },
+                  "type": "array",
+                  "description": "Массив изображений 360."
+                },
+                "has_discounted_item": {
+                  "type": "boolean",
+                  "description": "Признак, что у товара есть уценённые аналоги на складе Ozon."
+                },
+                "is_discounted": {
+                  "type": "boolean",
+                  "description": "Признак, является ли товар уценённым:\n  - Если товар создавался продавцом как уценённый — `true`. \n  - Если товар не уценённый или был уценён Ozon — `false`.\n"
+                },
+                "discounted_stocks": {
+                  "$ref": "#/definitions/productv2GetProductInfoDiscountedStocks"
+                },
+                "is_kgt": {
+                  "type": "boolean",
+                  "description": "Признак крупногабаритного товара."
+                },
+                "is_prepayment": {
+                  "type": "boolean",
+                  "description": "Флаг обязательной предоплаты для товара:\n  `true` — чтобы купить товар, нужно внести предоплату.\n  `false` — предоплата необязательна.\n"
+                },
+                "is_prepayment_allowed": {
+                  "type": "boolean",
+                  "description": "Если возможна предоплата — `true`."
+                },
+                "currency_code": {
+                  "type": "string",
+                  "description": "Валюта ваших цен. Совпадает с валютой, которая установлена в настройках личного кабинета.\n\nВозможные значения: \n  - `RUB` — российский рубль,\n  - `BYN` — белорусский рубль,\n  - `KZT` — тенге,\n  - `EUR` — евро,\n  - `USD` — доллар США,\n  - `CNY` — юань.\n"
+                },
+                "marketing_price": {
+                  "type": "string",
+                  "description": "Цена на товар с учетом всех акций. Это значение будет указано на витрине Ozon."
+                },
+                "min_ozon_price": {
+                  "type": "string",
+                  "description": "Минимальная цена на аналогичный товар на Ozon.\n\nУстаревший параметр, больше не используется. Всегда возвращает пустую строку `\"\"`.\n"
+                },
+                "min_price": {
+                  "type": "string",
+                  "description": "Минимальная цена товара после применения акций."
+                },
+                "name": {
+                  "type": "string",
+                  "description": "Название."
+                },
+                "offer_id": {
+                  "type": "string",
+                  "description": "Идентификатор товара в системе продавца — артикул."
+                },
+                "old_price": {
+                  "type": "string",
+                  "description": "Цена до учёта скидок. На карточке товара отображается зачёркнутой."
+                },
+                "premium_price": {
+                  "type": "string",
+                  "description": "Цена для клиентов с подпиской [Ozon Premium](https://docs.ozon.ru/common/ozon-premium/)."
+                },
+                "price": {
+                  "type": "string",
+                  "description": "Цена товара с учётом скидок — это значение показывается на карточке товара."
+                },
+                "price_index": {
+                  "type": "string",
+                  "description": "Параметр неактуален и будет удалён 1 мая 2023 года.\n\nЦеновой индекс.\n"
+                },
+                "price_indexes": {
+                  "$ref": "#/definitions/commonPriceIndexes"
+                },
+                "recommended_price": {
+                  "type": "string",
+                  "description": "Цена на товар, рекомендованная системой на основании схожих предложений."
+                },
+                "status": {
+                  "$ref": "#/definitions/productv2Status"
+                },
+                "sources": {
+                  "items": {
+                    "$ref": "#/definitions/productv2GetProductInfoResponseSource"
+                  },
+                  "type": "array",
+                  "description": "Информация об источниках схожих предложений. Подробнее в [Базе знаний продавца](https://seller-edu.ozon.ru/docs/prices/market-prices.html#если-рыночная-цена-на-комплект-отображается-неверно)."
+                },
+                "stocks": {
+                  "$ref": "#/definitions/productv2GetProductInfoResponseStock"
+                },
+                "updated_at": {
+                  "type": "string",
+                  "format": "date-time",
+                  "description": "Дата последнего обновления товара."
+                },
+                "vat": {
+                  "type": "string",
+                  "description": "Ставка НДС для товара."
+                },
+                "visibility_details": {
+                  "$ref": "#/definitions/productv2GetProductInfoResponseVisibilityDetails"
+                },
+                "visible": {
+                  "type": "boolean",
+                  "description": "Если товар выставлен на продажу — `true`."
+                },
+                "volume_weight": {
+                  "format": "double",
+                  "type": "number",
+                  "description": "Объёмный вес товара."
+                }
+              },
+              "type": "object",
+        
+              "definitions": {
+                
+                    "productv2GetProductInfoResponseCommissions": {
+                        "properties": {
+                          "deliveryAmount": {
+                            "format": "double",
+                            "type": "number",
+                            "description": "Стоимость доставки."
+                          },
+                          "minValue": {
+                            "format": "double",
+                            "type": "number",
+                            "description": "Минимальная комиссия."
+                          },
+                          "percent": {
+                            "format": "double",
+                            "type": "number",
+                            "description": "Процент комиссии."
+                          },
+                          "returnAmount": {
+                            "format": "double",
+                            "type": "number",
+                            "description": "Стоимость возврата."
+                          },
+                          "saleSchema": {
+                            "type": "string",
+                            "description": "Схема продажи."
+                          },
+                          "value": {
+                            "format": "double",
+                            "type": "number",
+                            "description": "Сумма комиссии."
+                          }
+                        },
+                        "type": "object"
+                      }
+                ,
+                    "productv2GetProductInfoDiscountedStocks": {
+                        "type": "object",
+                        "description": "Остатки уценённого товара на складе Ozon.",
+                        "properties": {
+                          "coming": {
+                            "type": "integer",
+                            "format": "int32",
+                            "description": "Количество товара, ожидаемого при поставке."
+                          },
+                          "present": {
+                            "type": "integer",
+                            "format": "int32",
+                            "description": "Количество товара на складе."
+                          },
+                          "reserved": {
+                            "type": "integer",
+                            "format": "int32",
+                            "description": "Количество зарезервированного товара."
+                          }
+                        }
+                      },
+                    "PriceIndexesIndexDataExternal": {
+                        "type": "object",
+                        "description": "Цена товара у конкурентов на других площадках.",
+                        "properties": {
+                          "minimal_price": {
+                            "type": "string",
+                            "description": "Минимальная цена товара у конкурентов на другой площадке."
+                          },
+                          "minimal_price_currency": {
+                            "type": "string",
+                            "description": "Валюта цены."
+                          },
+                          "price_index_value": {
+                            "type": "number",
+                            "format": "double",
+                            "description": "Значение индекса цены."
+                          }
+                        }
+                  },
+                    "PriceIndexesIndexDataOzon": {
+                        "type": "object",
+                        "description": "Цена товара у конкурентов на Ozon.",
+                        "properties": {
+                          "minimal_price": {
+                            "type": "string",
+                            "description": "Минимальная цена товара у конкурентов на Ozon."
+                          },
+                          "minimal_price_currency": {
+                            "type": "string",
+                            "description": "Валюта цены."
+                          },
+                          "price_index_value": {
+                            "type": "number",
+                            "format": "double",
+                            "description": "Значение индекса цены."
+                          }
+                        }
+                  },
+                    "PriceIndexesIndexDataSelf": {
+                        "type": "object",
+                        "description": "Цена вашего товара на других площадках.",
+                        "properties": {
+                          "minimal_price": {
+                            "type": "string",
+                            "description": "Минимальная цена вашего товара на других площадках."
+                          },
+                          "minimal_price_currency": {
+                            "type": "string",
+                            "description": "Валюта цены."
+                          },
+                          "price_index_value": {
+                            "type": "number",
+                            "format": "double",
+                            "description": "Значение индекса цены."
+                          }
+                        }
+                  },
+                    "commonPriceIndexes": {
+                        "type": "object",
+                        "description": "Ценовые индексы товара.\n\nПодробнее в [Базе знаний продавца](https://docs.ozon.ru/global/launch/quality-assurance/rating).\n",
+                        "properties": {
+                          "external_index_data": {
+                            "$ref": "#/definitions/PriceIndexesIndexDataExternal"
+                          },
+                          "ozon_index_data": {
+                            "$ref": "#/definitions/PriceIndexesIndexDataOzon"
+                          },
+                          "price_index": {
+                            "type": "string",
+                            "enum": ["WITHOUT_INDEX", "PROFIT", "AVG_PROFIT", "NON_PROFIT"],
+                            "description": "Итоговый ценовой индекс товара:\n- `WITHOUT_INDEX` — без индекса,\n- `PROFIT` — выгодный, \n- `AVG_PROFIT` — умеренный,\n- `NON_PROFIT` — невыгодный.\n"
+                          },
+                          "self_marketplaces_index_data": {
+                            "$ref": "#/definitions/PriceIndexesIndexDataSelf"
+                          }
+                        }
+                  },
+                    "v2ItemError": {
+                        "type": "object",
+                        "properties": {
+                          "code": {
+                            "type": "string",
+                            "description": "Код ошибки."
+                          },
+                          "state": {
+                            "type": "string",
+                            "description": "Состояние товара, в котором произошла ошибка."
+                          },
+                          "level": {
+                            "type": "string",
+                            "description": "Уровень ошибки."
+                          },
+                          "description": {
+                            "type": "string",
+                            "description": "Описание ошибки."
+                          },
+                          "field": {
+                            "type": "string",
+                            "description": "Поле, в котором произошла ошибка."
+                          },
+                          "attribute_id": {
+                            "type": "integer",
+                            "format": "int64",
+                            "description": "Атрибут, в котором произошла ошибка."
+                          },
+                          "attribute_name": {
+                            "type": "string",
+                            "description": "Название атрибута, в котором произошла ошибка."
+                          },
+                          "optional_description_elements": {
+                            "type": "object",
+                            "description": "Дополнительные поля для описания ошибки.",
+                            "additionalProperties": {
+                              "type": "string",
+                              "description": "Дополнительное поле для описания ошибки."
+                            }
+                          }
+                        }
+                  },
+                    "productv2Status": {
+                        "type": "object",
+                        "properties": {
+                          "state": {
+                            "type": "string",
+                            "description": "Состояние товара."
+                          },
+                          "state_failed": {
+                            "type": "string",
+                            "description": "Состояние товара, на переходе в которое произошла ошибка."
+                          },
+                          "moderate_status": {
+                            "type": "string",
+                            "description": "Статус модерации."
+                          },
+                          "decline_reasons": {
+                            "type": "array",
+                            "items": {
+                              "type": "string"
+                            },
+                            "description": "Причины отклонения товара."
+                          },
+                          "validation_state": {
+                            "type": "string",
+                            "description": "Статус валидации."
+                          },
+                          "state_name": {
+                            "type": "string",
+                            "description": "Название состояния товара."
+                          },
+                          "state_description": {
+                            "type": "string",
+                            "description": "Описание состояния товара."
+                          },
+                          "is_failed": {
+                            "type": "boolean",
+                            "description": "Признак, что при создании товара возникли ошибки."
+                          },
+                          "is_created": {
+                            "type": "boolean",
+                            "description": "Признак, что товар создан."
+                          },
+                          "state_tooltip": {
+                            "type": "string",
+                            "description": "Подсказки для текущего состояния товара."
+                          },
+                          "item_errors": {
+                            "type": "array",
+                            "items": {
+                              "$ref": "#/definitions/v2ItemError"
+                            },
+                            "description": "Ошибки при загрузке товаров."
+                          },
+                          "state_updated_at": {
+                            "type": "string",
+                            "format": "date-time",
+                            "description": "Время последнего изменения состояния товара."
+                          }
+                        },
+                        "description": "Описание состояния товара."
+                  },
+                  
+                    "productv2GetProductInfoResponseSource": {
+                        "properties": {
+                          "is_enabled": {
+                            "type": "boolean",
+                            "description": "Признак, что источник учитывается при расчете рыночного значения."
+                          },
+                          "sku": {
+                            "format": "int64",
+                            "type": "integer",
+                            "description": "Идентификатор товара на Ozon."
+                          },
+                          "source": {
+                            "type": "string",
+                            "description": "Ссылка на источник."
+                          }
+                        },
+                        "type": "object"
+                  },
+                    "productv2GetProductInfoResponseStock": {
+                        "properties": {
+                          "coming": {
+                            "format": "int32",
+                            "type": "integer",
+                            "description": "Ожидается поставка."
+                          },
+                          "present": {
+                            "format": "int32",
+                            "type": "integer",
+                            "description": "Сейчас на складе."
+                          },
+                          "reserved": {
+                            "format": "int32",
+                            "type": "integer",
+                            "description": "Зарезервировано."
+                          }
+                        },
+                        "type": "object",
+                        "description": "Информация об остатках товара."
+                  },
+                    "productv2GetProductInfoResponseVisibilityDetails": {
+                        "properties": {
+                          "active_product": {
+                            "type": "boolean",
+                            "description": "Если активный товар — `true`."
+                          },
+                          "has_price": {
+                            "type": "boolean",
+                            "description": "Если установлена цена — `true`."
+                          },
+                          "has_stock": {
+                            "type": "boolean",
+                            "description": "Если есть остаток на складах — `true`."
+                          }
+                        },
+                        "type": "object",
+                        "description": "Настройки видимости товара."
+                  }
+                }
+            }

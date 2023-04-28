@@ -43,8 +43,8 @@ class TapOzonSellerAPI(Tap):
             A list of discovered streams.
         """
         return [
-            streams.v2CategoryTreeStream(self),
-            # streams.v2ProductInfoStream(self, key_='AE12'),
+            # streams.v2CategoryTreeStream(self),
+            streams.v2ProductInfoStream(self, key_='A16-30-M'),
         ]
 
 
