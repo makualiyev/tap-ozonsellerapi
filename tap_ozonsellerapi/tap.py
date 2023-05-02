@@ -34,6 +34,17 @@ class TapOzonSellerAPI(Tap):
             th.DateTimeType,
             description="The earliest record date to sync",
         ),
+        
+        th.Property(
+            "offer_id",
+            th.StringType,
+            description="The offer id to get product infos for v2 product info stream"
+        ),
+        th.Property(
+            "offer_ids",
+            th.StringType,
+            description="The list with offer ids to get product infos for v2 product info stream"
+        ),
     ).to_dict()
 
     def discover_streams(self) -> list[streams.OzonSellerAPIStream]:
@@ -44,7 +55,8 @@ class TapOzonSellerAPI(Tap):
         """
         return [
             # streams.v2CategoryTreeStream(self),
-            streams.v2ProductInfoStream(self, key_='A16-30-M'),
+            # streams.v2ProductInfoStream(self, key_=self.config_jsonschema.get('offer_id')),
+            streams.v2ProductInfoListStream(self, key_=self.config.get('offer_ids').split(',')),
         ]
 
 

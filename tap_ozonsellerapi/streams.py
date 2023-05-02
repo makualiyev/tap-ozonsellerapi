@@ -28,24 +28,6 @@ class v2CategoryTreeStream(OzonSellerAPIStream):
     replication_key = None
     # Optionally, you may also use `schema_filepath` in place of `schema`:
     schema_filepath = SCHEMAS_DIR / "v2_category_tree.json"
-    # schema = th.PropertiesList(
-    #     th.Property(
-    #         "category_id",
-    #         th.IntegerType,
-    #         description="The user's system ID",
-    #     ),
-    #     th.Property(
-    #         "title",
-    #         th.StringType,
-    #         description="The user's age in years",
-    #     ),
-    #     th.Property(
-    #         "children",
-    #         th.ArrayType(
-    #         th.JSONPointerType()
-    #         )
-    #     ),
-    # ).to_dict()
 
     def build_prepared_request(
             self, *args: Any, **kwargs: Any
@@ -111,25 +93,7 @@ class v2ProductInfoStream(OzonSellerAPIStream):
     records_jsonpath = "$.result"
 
     replication_key = None
-    # Optionally, you may also use `schema_filepath` in place of `schema`:
-    schema_filepath = SCHEMAS_DIR / "v2_product_info_3.json"
-    # schema = th.PropertiesList(
-    #     th.Property(
-    #         "product_id",
-    #         th.IntegerType,
-    #         description="Идентификатор товара",
-    #     ),
-    #     th.Property(
-    #         "offer_id",
-    #         th.StringType,
-    #         description="Идентификатор товара в системе продавца — артикул",
-    #     ),
-    #     # th.Property(                                                                      # TODO: is it needed for next page token arg?
-    #     #     "last_id",
-    #     #     th.StringType,
-    #     #     description="Идентификатор товара в системе продавца — артикул",
-    #     # ),
-    # ).to_dict()
+    schema_filepath = SCHEMAS_DIR / "v2_product_info.json"
 
     def build_prepared_request(
             self, *args: Any, **kwargs: Any
@@ -149,5 +113,41 @@ class v2ProductInfoStream(OzonSellerAPIStream):
     ) -> dict | None:
         return {
             'offer_id': self.key_
-            # 'category_id': 17027492
         }
+
+
+class v2ProductInfoListStream(OzonSellerAPIStream):
+    """Define custom stream."""
+
+    def __init__(self, *args, key_: str) -> None:
+        super().__init__(*args)
+        self.key_ = key_
+    
+    name = "v2_product_info_list"
+    path = "/v2/product/info/list"
+    primary_keys = ["id"]
+    records_jsonpath = "$.result.items[*]"
+
+    replication_key = None
+    schema_filepath = SCHEMAS_DIR / "v2_product_info.json"
+
+    def build_prepared_request(
+            self, *args: Any, **kwargs: Any
+    ) -> requests.PreparedRequest:
+        
+        prepared_request = super().build_prepared_request(*args, **kwargs)
+        prepared_request.method = 'POST'
+        return prepared_request
+    
+    def get_new_paginator(self) -> BaseAPIPaginator:
+        return super().get_new_paginator()
+
+    def prepare_request_payload(
+            self,
+            context: dict | None,
+            next_page_token
+    ) -> dict | None:
+        return {
+            'offer_id': self.key_
+        }
+    
